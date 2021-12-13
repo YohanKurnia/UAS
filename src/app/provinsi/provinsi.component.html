@@ -1,0 +1,58 @@
+<div class="container">
+    <h1 class="text-center">Jumlah Kasus per Provinsi</h1>
+    <select [(ngModel)]="prov" (click)="ngOnInit()" class="m-2">
+        <option value="">Semua Provinsi</option>
+        <option value="dki_jakarta">DKI Jakarta</option>
+        <option value="jawa_barat">Jawa Barat</option>
+        <option value="jawa_tengah">Jawa Tengah</option>
+        <option value="jawa_timur">Jawa Timur</option>
+        <option value="kalimantan_timur">Kalimantan Timur</option>
+        <option value="daerah_istimewa_yogyakarta">Daerah Istimewa Yogyakarta</option>
+        <option value="banten">Banten</option>
+        <option value="riau">Riau</option>
+        <option value="bali">Bali</option>
+        <option value="sulawesi_selatan">Sulawesi Selatan</option>
+        <option value="sumatera_utara">Sumatera Utara</option>
+        <option value="sumatera_barat">Sumatera Barat</option>
+        <option value="kalimantan_selatan">Kalimantan Selatan</option>
+        <option value="nusa_tenggara_timur">Nusa Tenggara Timur</option>
+        <option value="sumatera_selatan">Sumatera Selatan</option>
+        <option value="kepulauan_riau">Kepulauan Riau</option>
+        <option value="kepulauan_bangka_belitung">Kepulauan Bangka Belitun</option>
+        <option value="lampung">Lampung</option>
+        <option value="sulawesi_tengah">Sulawesi Tengah</option>
+        <option value="kalimantan_tengah">Kalimantan Tengah</option>
+        <option value="kalimantan_barat">Kalimantan Barat</option>
+        <option value="aceh">Aceh</option>
+        <option value="kalimantan_utara">Kalimantan Utara</option>
+        <option value="sulawesi_utara">Sulawesi Utara</option>
+        <option value="papua">Papua</option>
+        <option value="jambi">Jambi</option>
+        <option value="nusa_tenggara_barat">Nusa Tenggara Barat</option>
+        <option value="papua_barat">Papua Barat</option>
+        <option value="bengkulu">Bengkulu</option>
+        <option value="sulawesi_tenggara">Sulawesi Tenggara</option>
+        <option value="maluku">Maluku</option>
+        <option value="sulawesi_barat">Sulawesi Barat</option>
+        <option value="maluku_utara">Maluku Utara</option>
+        <option value="gorontalo">Gorontalo</option>
+    </select>
+    <div class="d-flex justify-content-around m-2">
+        <button class="btn border-dark" (click)="jenis = 'status'" *ngIf="jenis != 'status'">Status</button>
+        <button class="btn border-dark" disabled *ngIf="jenis == 'status'">Status</button>
+        <button class="btn border-dark" (click)="jenis = 'kelamin'" *ngIf="jenis != 'kelamin'">Jenis Kelamin</button>
+        <button class="btn border-dark" disabled *ngIf="jenis == 'kelamin'">Jenis Kelamin</button>
+        <button class="btn border-dark" (click)="jenis = 'usia'" *ngIf="jenis != 'usia'">Rentang Usia</button>
+        <button class="btn border-dark" disabled *ngIf="jenis == 'usia'">Rentang Usia</button>
+    </div>
+    <ul class="list-group" *ngFor="let p of data">
+        <li class="list-group-item">
+            <h4> {{p.provinsi}} </h4>
+            <p>Total kasus: {{p.kasus}} </p>
+            <p *ngIf="jenis == 'status'">Sembuh: {{p.sembuh}} <br> Dirawat: {{p.dirawat}} <br> Meninggal: {{p.meninggal}} </p>
+            <p *ngIf="jenis == 'kelamin'">Laki-laki: {{p.jenis_kelamin['laki-laki']}} <br> Perempuan: {{p.jenis_kelamin.perempuan}} </p>
+            <p *ngIf="jenis == 'usia'">0-5 tahun: {{p.kelompok_umur['0-5']}} <br> 6-18 tahun: {{p.kelompok_umur['6-18']}} <br> 
+                19-30 tahun: {{p.kelompok_umur['19-30']}} <br> 31-45 tahun: {{p.kelompok_umur['31-45']}} <br> 46-59 tahun: {{p.kelompok_umur['46-59']}} <br> 60 tahun keatas {{p.kelompok_umur['≥ 60']}}</p>
+        </li>
+    </ul>
+</div>

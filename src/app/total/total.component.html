@@ -1,0 +1,21 @@
+<div class="container">
+    <h1 class="text-center">Data Harian</h1>
+    <div class="m-3 col-3">
+        <h5>Kasus Covid per 
+            <a (click)="perbulan()" class="text-primary" *ngIf="jenis == 'h'">Bulan</a>
+            <a *ngIf="jenis == 'b'">Bulan</a> /
+            <a (click)="perhari()" class="text-primary" *ngIf="jenis == 'b'">Hari</a>
+            <a *ngIf="jenis == 'h'">Hari</a>
+        </h5>
+        <input type="month" min="2020-03" max="2021-12" [(ngModel)]="bulan" *ngIf="jenis == 'b'">
+        <input type="date" min="2020-03-02" max="2021-12-31" [(ngModel)]="hari" *ngIf="jenis == 'h'">
+    </div>
+    <ul class="list-group" *ngFor="let e of data">
+        <li class="list-group-item" *ngIf="e.tanggal.substring(0,7) == bulan || e.tanggal.substring(0,10) == hari">
+            <h4>Tanggal: {{ e.tanggal.substring(0,10) }} </h4>
+            <p>Sembuh: {{e.sembuh}} Positif: {{e.positif}} Dirawat: {{e.dirawat}} Meninggal: {{e.meninggal}} </p>
+            <h6>Total</h6>
+            <p>Sembuh: {{e.sembuh_kumulatif}} Positif: {{e.positif_kumulatif}} Dirawat: {{e.dirawat_kumulatif}} Meninggal: {{e.meninggal_kumulatif}} </p>
+        </li>
+    </ul>
+</div>
